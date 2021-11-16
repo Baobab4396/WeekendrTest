@@ -1,0 +1,12 @@
+SELECT t1.house_name, t2.free_start, t2.min_free_end as free_end, t2.min_free_end - t2.free_start as duration
+FROM bookings t1
+INNER JOIN
+
+(SELECT house_name, free_start, MIN(free_end) as min_free_end FROM (
+SELECT b1.house_name, b1.end_date as free_start, b2.start_date as free_end
+FROM bookings b1
+INNER JOIN bookings b2
+ON (b1.end_date  < b2.start_date and b1.house_name = b2.house_name)
+) AS prefetch GROUP BY house_name, free_start) t2
+
+ON t1.end_date = t2.free_start and t1.house_name = t2.house_name WHERE t2.min_free_end - t2.free_start > 4

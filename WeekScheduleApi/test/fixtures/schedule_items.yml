@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop_name: MyString
+  day_id: 1
+  open_time: 2021-11-14 20:25:21
+  close_time: 2021-11-14 20:25:21
+
+two:
+  shop_name: MyString
+  day_id: 1
+  open_time: 2021-11-14 20:25:21
+  close_time: 2021-11-14 20:25:21

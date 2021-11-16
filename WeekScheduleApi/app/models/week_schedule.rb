@@ -1,0 +1,2 @@
+class WeekSchedule < ApplicationRecord
+end

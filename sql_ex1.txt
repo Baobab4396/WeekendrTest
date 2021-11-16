@@ -1,0 +1,16 @@
+DELETE FROM bookings b
+WHERE EXISTS
+(
+    SELECT 1 FROM bookings b2
+    WHERE b2.house_name = b.house_name
+    AND (
+            b2.start_date BETWEEN b.start_date AND b.end_date
+            OR b2.end_date BETWEEN b.start_date AND b.end_date
+            OR b.start_date BETWEEN b2.start_date AND b2.end_date
+            OR b.end_date BETWEEN b2.start_date AND b2.end_date
+        )
+    AND ((b.end_date - b.start_date < b2.end_date - b2.start_date)
+    OR (b.end_date - b.start_date = b2.end_date - b2.start_date AND b.start_date < b2.start_date))
+    
+    AND b2.id != b.id
+) 
